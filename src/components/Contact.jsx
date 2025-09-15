@@ -1,8 +1,39 @@
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const floatingIcons = ["📧", "📞", "💻", "🌐", "⚡", "🛠️"];
 
 export default function Contact() {
+  const form = useRef();
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    emailjs
+      .sendForm(
+        "service_uuapf79", // 🔹 EmailJS Service ID
+        "template_ebr0cyi", // 🔹 EmailJS Template ID
+        form.current,
+        "3wlBKmk1wXtY0bhcl" // 🔹 EmailJS Public Key
+      )
+      .then(
+        () => {
+          setStatus("success");
+          setLoading(false);
+          form.current.reset();
+        },
+        (error) => {
+          console.error(error.text);
+          setStatus("error");
+          setLoading(false);
+        }
+      );
+  };
+
   return (
     <section
       id="contact"
@@ -86,11 +117,13 @@ export default function Contact() {
         viewport={{ once: true }}
         className="relative z-20 max-w-3xl p-10 mx-auto bg-gray-900 shadow-xl bg-opacity-70 backdrop-blur-lg rounded-3xl"
       >
-        <form className="grid gap-6">
+        <form ref={form} onSubmit={sendEmail} className="grid gap-6">
           <div className="flex flex-col">
             <label className="mb-2 font-semibold text-gray-300">Name</label>
             <input
               type="text"
+              name="user_name"
+              required
               placeholder="Your Name"
               className="p-4 text-white transition bg-gray-800 border border-gray-700 outline-none rounded-xl focus:ring-2 focus:ring-cyan-400"
             />
@@ -100,6 +133,8 @@ export default function Contact() {
             <label className="mb-2 font-semibold text-gray-300">Email</label>
             <input
               type="email"
+              name="user_email"
+              required
               placeholder="you@example.com"
               className="p-4 text-white transition bg-gray-800 border border-gray-700 outline-none rounded-xl focus:ring-2 focus:ring-cyan-400"
             />
@@ -108,20 +143,32 @@ export default function Contact() {
           <div className="flex flex-col">
             <label className="mb-2 font-semibold text-gray-300">Message</label>
             <textarea
+              name="message"
               rows="5"
+              required
               placeholder="Write your message..."
               className="p-4 text-white transition bg-gray-800 border border-gray-700 outline-none rounded-xl focus:ring-2 focus:ring-cyan-400"
             ></textarea>
           </div>
 
           <motion.button
+            type="submit"
+            disabled={loading}
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px #00ffff" }}
             whileTap={{ scale: 0.95 }}
-            className="py-4 font-semibold text-white transition-all shadow-lg bg-cyan-600 rounded-xl hover:bg-cyan-500"
+            className="py-4 font-semibold text-white transition-all shadow-lg bg-cyan-600 rounded-xl hover:bg-cyan-500 disabled:opacity-50"
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </motion.button>
         </form>
+
+        {/* Status Messages */}
+        {status === "success" && (
+          <p className="mt-4 text-green-400">✅ Message sent successfully!</p>
+        )}
+        {status === "error" && (
+          <p className="mt-4 text-red-400">❌ Failed to send. Try again!</p>
+        )}
 
         {/* Contact Info */}
         <div className="flex flex-col items-center justify-around gap-6 mt-10 text-gray-300 md:flex-row">
@@ -135,7 +182,14 @@ export default function Contact() {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-2xl text-cyan-400">🌐</span>
-            <span className="text-15">https://github.com/NazmulHasan8536</span>
+            <a
+              href="https://github.com/NazmulHasan8536"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyan-400"
+            >
+              github.com/NazmulHasan8536
+            </a>
           </div>
         </div>
       </motion.div>

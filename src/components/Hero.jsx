@@ -21,7 +21,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="h-screen flex flex-col-reverse md:flex-row items-center justify-center gap-10 px-6 md:px-20 pt-20 relative overflow-hidden bg-gray-950"
+      className="relative flex flex-col-reverse items-center justify-center h-screen gap-10 px-6 pt-20 overflow-hidden md:flex-row md:px-20 bg-gray-950"
     >
       {/* Deep Gradient Background */}
       <motion.div
@@ -54,7 +54,7 @@ export default function Hero() {
         return (
           <motion.div
             key={index}
-            className="absolute text-4xl md:text-5xl select-none z-20"
+            className="absolute z-20 text-4xl select-none md:text-5xl"
             style={{
               top: yTransform,
               left: xTransform,
@@ -72,7 +72,7 @@ export default function Hero() {
       {trails.map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-6 h-6 rounded-full bg-cyan-400 opacity-50 z-10"
+          className="absolute z-10 w-6 h-6 rounded-full opacity-50 bg-cyan-400"
           style={{
             x: mousePos.x - i * 10,
             y: mousePos.y - i * 10,
@@ -92,15 +92,15 @@ export default function Hero() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
-        className="flex-1 text-center md:text-left relative z-30"
+        className="relative z-30 flex-1 text-center md:text-left"
       >
-        <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-lg">
+        <h1 className="text-4xl font-extrabold leading-tight text-white md:text-6xl drop-shadow-lg">
           Hi, I am{" "}
           <span className="text-cyan-400 drop-shadow-[0_0_25px_rgba(0,255,255,0.9)]">
             Nazmul Hasan
           </span>
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-lg">
+        <p className="max-w-lg mt-4 text-lg text-gray-300 md:text-xl">
           Senior Full-Stack Developer with 4+ years of experience building
           scalable web apps using{" "}
           <span className="text-cyan-400">
@@ -110,16 +110,16 @@ export default function Hero() {
           digital experiences.
         </p>
 
-        <div className="mt-6 flex gap-4 justify-center md:justify-start">
+        <div className="flex justify-center gap-4 mt-6 md:justify-start">
           <a
             href="#projects"
-            className="px-6 py-3 bg-cyan-600 text-white rounded-lg shadow-lg hover:bg-cyan-500 transition-colors hover:scale-105 transform"
+            className="px-6 py-3 text-white transition-colors transform rounded-lg shadow-lg bg-cyan-600 hover:bg-cyan-500 hover:scale-105"
           >
             View My Work
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 hover:scale-105 transition transform"
+            className="px-6 py-3 text-gray-300 transition transform border border-gray-600 rounded-lg hover:bg-gray-800 hover:scale-105"
           >
             Hire Me
           </a>
@@ -131,7 +131,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
-        className="flex-1 flex justify-center relative z-30"
+        className="relative z-30 flex justify-center flex-1"
       >
         <motion.img
           src={myImage}
