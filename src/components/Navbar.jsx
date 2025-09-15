@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import navbarimg from "../../public/logo.png";
+import resumePDF from "../../public/Nazmul_Hasan_Resume.pdf";
 
 export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
@@ -67,7 +69,7 @@ export default function Navbar() {
           }}
         >
           <img
-            src="/public/logo.png"
+            src={navbarimg}
             alt="Logo"
             className="object-cover w-10 h-10 rounded-full"
           />
@@ -166,7 +168,7 @@ export default function Navbar() {
           {/* Download CV in Mobile Menu */}
           <li>
             <a
-              href="../../public/Nazmul_Hasan_Resume (1) (1).pdf"
+              href={resumePDF}
               download
               className="block px-4 py-2 font-semibold text-white transition-all rounded-lg shadow-md bg-cyan-500 hover:bg-cyan-400"
               onClick={() => setMenuOpen(false)}

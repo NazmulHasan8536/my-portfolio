@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import houserent from "../../public/houserent.png";
+import isp from "../../public/isp.png";
 
 const projects = [
   {
     title: "House Rent System",
     desc: "SaaS-based rent management system with monthly invoicing and tenant management.",
     tech: ["Laravel", "React", "Tailwind", "MySQL"],
-    image: "/public/houserent.png",
+    image: houserent,
     demo: "#",
     github: "#",
   },
@@ -22,7 +24,7 @@ const projects = [
     title: "ISP Management",
     desc: "MikroTik integration with dashboard, customer billing & usage monitoring.",
     tech: ["React", "Laravel", "REST API", "MikroTik API"],
-    image: "/public/isp.png",
+    image: isp,
     demo: "#",
     github: "#",
   },
