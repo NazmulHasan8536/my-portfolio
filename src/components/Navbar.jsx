@@ -120,7 +120,7 @@ export default function Navbar() {
 
           {/* Download CV with Glow */}
           <motion.a
-            href="../../public/Nazmul_Hasan_Resume (1) (1).pdf"
+            href={resumePDF}
             download
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px #00ffff" }}
             whileTap={{ scale: 0.95 }}
